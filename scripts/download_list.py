@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-import requests
 import argparse
-from pathlib import Path
-from os import path
 import functools
-from tqdm.auto import tqdm
 from collections.abc import Callable
+from os import path
+from pathlib import Path
+
+import requests
+from tqdm.auto import tqdm
 
 _filename = path.basename(__file__)
 parser = argparse.ArgumentParser(prog=_filename)
@@ -83,24 +84,33 @@ def create_maintain_only_bytes_in_column_header_handler(
     chunk_to_maintain: bytes,
 ) -> Callable[[int, bytes], bytes]:
     """
-    Returns an handler that maintains only the specified bytes in a column header
+    Returns an handler that:
+    - maintains the specified bytes in a column header
+    - decoded each line from latin1 and encodes them as utf8
+    - lower cases all the csv lines different from the header
+
     Example:
-        column_headers = "my;simple;example to remove;last"
-        cleaned_column_headers = create_maintain_only_bytes_in_column_header_handler(b"example")(0,column_headers)
-        assert cleaned_column_headers == "my;simple;example;last"
+        column_headers = "My;Simple;Example to remove;Last"
+        handler = create_maintain_only_bytes_in_column_header_handler(b"example")
+        assert handler(0,column_headers) == "My;Simple;Example;Last"
+        assert handler(1,column_headers) == "my;simple;example to remove;last"
     """
     chunk_to_maintain_len = len(chunk_to_maintain)
 
     def handler(line_number: int, chunk: bytes) -> bytes:
-        if line_number != 0:
-            return chunk
+        if line_number == 0:
+            indx = chunk.find(chunk_to_maintain)
+            while indx >= 0:
+                start = indx + chunk_to_maintain_len
+                end = chunk.find(b";", start)
+                chunk = chunk[:start] + chunk[end:]
+                indx = chunk.find(chunk_to_maintain)
 
-        indx = chunk.find(chunk_to_maintain)
-        if indx >= 0:
-            start = indx + chunk_to_maintain_len
-            end = chunk.find(b";", start)
-            chunk = chunk[:start] + chunk[end:]
-        return chunk
+        str_chunk = chunk.decode("latin1")
+        if line_number != 0:
+            str_chunk = str_chunk.lower()
+
+        return str_chunk.encode("utf8")
 
     return handler
 
@@ -113,8 +123,6 @@ download_file(
         b"Prezzo Pubblico"
     ),
 )
-with open(lista_farmaci_equivalenti, "rb+") as f:
-    f.write(lista_farmaci_equivalenti.read_text(encoding="latin1").encode("utf8"))
 
 download_file("https://drive.aifa.gov.it/farmaci/confezioni.csv", anagrafica_farmaci)
 download_file("https://drive.aifa.gov.it/farmaci/PA_confezioni.csv", principi_attivi)

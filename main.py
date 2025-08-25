@@ -1,22 +1,22 @@
-from sentence_transformers import SentenceTransformer
 import numpy as np
+from sentence_transformers import SentenceTransformer
 
 sentences_dataset = [
     [
-        "Acarbosio;USO ORALE;ACARBOSIO TECNIGEN;50 MG COMPRESSE 40 COMPRESSE IN BLISTER PVC/PCTFE/PVC/AL",
-        "Acarbosio in compresse",
+        "acarbosio;uso orale;acarbosio tecnigen;50 mg compresse 40 compresse in blister pvc/pctfe/pvc/al",
+        "acarbosio in compresse",
     ],
     [
-        "Acarbosio;USO ORALE;ACARBOSIO TECNIGEN;50 MG COMPRESSE 40 COMPRESSE IN BLISTER PVC/PCTFE/PVC/AL",
-        "Acarbosio",
+        "acarbosio;uso orale;acarbosio tecnigen;50 mg compresse 40 compresse in blister pvc/pctfe/pvc/al",
+        "acarbosio",
     ],
     [
-        "Acarbosio;USO ORALE;ACARBOSIO TECNIGEN;50 MG GOCCIE 40 COMPRESSE IN BLISTER PVC/PCTFE/PVC/AL",
-        "Acarbosio",
+        "acarbosio;uso orale;acarbosio tecnigen;50 mg goccie 40 compresse in blister pvc/pctfe/pvc/al",
+        "acarbosio",
     ],
     [
-        "Acarbosio;USO ORALE;ACARBOSIO TECNIGEN;50 MG GOCCIE 40 COMPRESSE IN BLISTER PVC/PCTFE/PVC/AL",
-        "Acarbosio in compresse",
+        "acarbosio;uso orale;acarbosio tecnigen;50 mg goccie 40 compresse in blister pvc/pctfe/pvc/al",
+        "acarbosio in compresse",
     ],
 ]
 
