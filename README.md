@@ -8,6 +8,7 @@
   - [convert to onnx](https://huggingface.co/docs/transformers/serialization)
 - Inference using rust
   - [candle](https://github.com/huggingface/candle)
+    - [example loading ONNX model](https://gist.github.com/JosephCatrambone/39fb1d7902ffdb73530119b0039855af)
   - [burn](https://github.com/tracel-ai/burn)
 - Vector database
   - [Turso](https://github.com/tursodatabase/turso)

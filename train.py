@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import polars as pl
-from datasets import Dataset
 from sentence_transformers import SentenceTransformer, SentenceTransformerTrainer
 from sentence_transformers.evaluation import (
     SimilarityFunction,
@@ -12,6 +11,8 @@ from sentence_transformers.training_args import (
     BatchSamplers,
     SentenceTransformerTrainingArguments,
 )
+
+from datasets import Dataset
 
 datasets_folder = Path("./datasets")
 dataset_triplets = datasets_folder / "triplets.parquet"
@@ -30,7 +31,7 @@ eval_dataset = triplets.slice(train_size, eval_size)
 test_dataset = triplets.slice(train_size + eval_size)
 
 model = SentenceTransformer(
-    "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+    "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
 )
 
 loss = TripletLoss(model, distance_metric=TripletDistanceMetric.COSINE)
