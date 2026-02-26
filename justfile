@@ -1,6 +1,9 @@
 default:
     @just --list
 
+download:
+    @python scripts/download_list.py
+
 train:
     @python train.py
 
@@ -10,6 +13,5 @@ run:
 dataset:
     @python create_dataset.py
 
-# Serve ONNX test page (open http://localhost:8080/test_onnx.html)
 serve-test:
-    npx http-server -p 8080 --cors -c-1
+    @npx http-server -p 8080 --cors -c-1

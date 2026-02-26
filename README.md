@@ -14,3 +14,13 @@
   - [Turso](https://github.com/tursodatabase/turso)
   - [SurrealDB](https://github.com/surrealdb/surrealdb)
   - [qdrant](https://github.com/qdrant/qdrant)
+
+## How to
+
+- create virtual environment using `uv`
+- enter venv
+- `uv sync`
+- `just download`
+- `just train`
+- `just run`
+- `just serve-test`
