@@ -2,10 +2,10 @@ default:
     @just --list
 
 train:
-    @python3 train.py
+    @python train.py
 
-export-onnx source destination:
-    @optimum-cli export onnx -m {{source}} --task feature-extraction {{destination}}
+run:
+    @python main.py
 
 dataset:
-    @python3 create_dataset.py
+    @python create_dataset.py

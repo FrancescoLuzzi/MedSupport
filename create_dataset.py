@@ -11,6 +11,8 @@ class DataframeColumn(StrEnum):
     Confezione = "Confezione"
 
 
+TRAINING_SEED = 69420
+
 training_data_folder = Path("./data")
 training_dataset_file = training_data_folder / "lista_farmaci_equivalenti.csv"
 datasets_folder = Path("./datasets")
@@ -46,10 +48,12 @@ df = pl.read_csv(training_dataset_file, separator=";").select(
         DataframeColumn.Confezione,
     ]
 )
-print(df)
 
 triplets_query = (
     df.lazy()
+    # create column called "format" with all the bad_replacement_names found
+    # and filter out empty matches
+    # then explode the rows
     .with_columns(
         format=pl.col(DataframeColumn.Confezione)
         .str.extract_all(bad_replacement_keys)
@@ -57,7 +61,13 @@ triplets_query = (
     )
     .filter(pl.col("format").list.len() > 0)
     .explode("format")
+    # join on the format with the dataframe that maps a format to all the bad replacements
+    # to expand the dataset
     .join(df_bad_formats, on="format")
+    # create the 3 columns:
+    # anchor, the user query
+    # positive, a correct response
+    # negative, a wronge response
     .with_columns(
         anchor=pl.col(DataframeColumn.Farmaco) + " in " + pl.col("format"),
         positive=pl.col(DataframeColumn.Farmaco)
@@ -80,6 +90,10 @@ triplets_query = (
         ),
     )
     .select("anchor", "positive", "negative")
+    # shuffle the negative column cells
+    .with_columns(
+        pl.col("negative").sample(fraction=1.0, shuffle=True, seed=TRAINING_SEED)
+    )
 )
 
 triplets_query.collect().write_parquet(dataset_triplets)
