@@ -6,12 +6,11 @@
 - [Train sentence transformers](https://huggingface.co/blog/train-sentence-transformers)
   - [examples](https://github.com/UKPLab/sentence-transformers/tree/master/examples/sentence_transformer/training)
   - [convert to onnx](https://huggingface.co/docs/transformers/serialization)
-- Inference using rust
-  - [candle](https://github.com/huggingface/candle)
-    - [example loading ONNX model](https://gist.github.com/JosephCatrambone/39fb1d7902ffdb73530119b0039855af)
-  - [burn](https://github.com/tracel-ai/burn)
+- Inference
+  - [candle](https://github.com/huggingface/candle) **DOESN'T SUPPORT WPGU**
+  - [burn](https://github.com/tracel-ai/burn) **SUPPORTS WPGU**
+  - [transformers.js](https://github.com/huggingface/transformers.js)
 - Vector database
   - [Turso](https://github.com/tursodatabase/turso)
   - [SurrealDB](https://github.com/surrealdb/surrealdb)
-  - [sled](https://github.com/spacejam/sled)
   - [qdrant](https://github.com/qdrant/qdrant)
