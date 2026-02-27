@@ -6,7 +6,7 @@ dist/
 wheels/
 *.egg-info
 
-node_modules
+node_modules/
 
 # Virtual environments
 .venv
@@ -14,3 +14,6 @@ node_modules
 data/*.csv
 datasets/*.parquet
 models
+db
+key.pem
+cert.pem

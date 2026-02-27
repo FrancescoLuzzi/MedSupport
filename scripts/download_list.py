@@ -9,9 +9,6 @@ import aiohttp
 from aiohttp import ClientTimeout
 from tqdm.asyncio import tqdm
 
-parser = argparse.ArgumentParser(prog="download_list.py")
-parser.add_argument("data_dir", type=Path, default="./data", nargs="?")
-args = parser.parse_args()
 
 
 async def download_file(
@@ -98,7 +95,33 @@ def create_maintain_only_bytes_in_column_header_handler(
 
 
 async def main():
-    destination_data_dir: Path = args.data_dir
+    parser = argparse.ArgumentParser(prog="download_list.py")
+    parser.add_argument(
+        "--src-dir",
+        type=Path,
+        default=Path("."),
+        help="Source directory (unused)",
+    )
+    parser.add_argument(
+        "--model-dir",
+        type=Path,
+        default=Path("models"),
+        help="Model directory (unused)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path("./data"),
+        help="Destination directory for downloaded CSV files",
+    )
+    parser.add_argument(
+        "--model-name",
+        type=str,
+        default="",
+        help="Model name (unused)",
+    )
+    args = parser.parse_args()
+    destination_data_dir: Path = args.output_dir
 
     lista_farmaci_equivalenti = destination_data_dir / "lista_farmaci_equivalenti.csv"
     anagrafica_farmaci = destination_data_dir / "anagrafica_farmaci.csv"

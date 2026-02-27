@@ -1,0 +1,10 @@
+/srv {
+    root * /srv
+    file_server
+}
+
+# TLS configuration: use bundled certs
+:443 {
+    tls /etc/caddy/cert.pem /etc/caddy/key.pem
+    import srv
+}

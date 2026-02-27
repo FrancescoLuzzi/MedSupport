@@ -457,6 +457,7 @@ dependencies = [
     { name = "asyncio" },
     { name = "optimum", extra = ["onnxruntime-gpu"] },
     { name = "polars" },
+    { name = "pyturso" },
     { name = "requests" },
     { name = "sentence-transformers", extra = ["train"] },
     { name = "torch" },
@@ -470,6 +471,7 @@ requires-dist = [
     { name = "asyncio", specifier = ">=4.0.0" },
     { name = "optimum", extras = ["onnxruntime-gpu"], specifier = ">=1.17.1" },
     { name = "polars", specifier = ">=1.32.3" },
+    { name = "pyturso", specifier = ">=0.4.4" },
     { name = "requests", specifier = ">=2.32.5" },
     { name = "sentence-transformers", extras = ["train"], specifier = ">=5.1.0" },
     { name = "torch", specifier = ">=2.8.0" },
@@ -1132,6 +1134,23 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/66/c0/0c8b6ad9f17a802ee498c46e004a0eb49bc148f2fd230864601a86dcf6db/python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3", size = 342432 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427", size = 229892 },
+]
+
+[[package]]
+name = "pyturso"
+version = "0.4.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/26/11/eb759eaa18a7b19e6a7321c3fff7facc4fdaccda52088cfe957c8ff81cd1/pyturso-0.4.4.tar.gz", hash = "sha256:591ecfa37840801715d4faabae3a082b4774b7a7efe7860a32db92de2a5a8878", size = 1451696 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/23/c3/a444a1b9ff02b7314f7c2f3a5ca7992e6e93c63258721c17b99c763c4b86/pyturso-0.4.4-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:02b10dd0b018d7ba9ae3c6295774a423949193a1c16dc500472ab016665fdf54", size = 3985600 },
+    { url = "https://files.pythonhosted.org/packages/fe/b9/8530ada45e3cc1b32ade08ecc18ed4ffb3598c82079c56a5d7b1bb2c967e/pyturso-0.4.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a7cc9aec8ddb41882f17afaf65c17f3324f89f05e3d61e12b3a66bef35c4a9d1", size = 13331678 },
+    { url = "https://files.pythonhosted.org/packages/12/2e/06e10efa9fc46fa8c867f0dc0c25b4164642a72dc184465522153b067592/pyturso-0.4.4-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:ab1793fbbd95b29ccecb680d122bc4726b674c8ec8232d4183eeb662a388e49c", size = 3985399 },
+    { url = "https://files.pythonhosted.org/packages/c3/7c/17fb05bbef22f558cf7350177312abde2b8c84bd631a88bb4e92b2eac3dc/pyturso-0.4.4-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:aa9763528f126c85aabc41eab89bb06ea46f570bf9a377dd842a8d85ee46e4b2", size = 13330169 },
+    { url = "https://files.pythonhosted.org/packages/cf/09/00226f913e9627af87a429da27947147971120957c8469971e06d950aa41/pyturso-0.4.4-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:59166bda2bb0e584aa3d03e44a52fddbe0bafb48713daf5ad6b00ad04c2778c9", size = 3985743 },
+    { url = "https://files.pythonhosted.org/packages/73/17/24596a78031f1a4f0dd1dd8de8d46263eeaf89c66091ec7b3de47b428ed4/pyturso-0.4.4-cp314-cp314-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1ab4cdd3faf8e0daa53554cfb1c25ccb59b15688f0097871457df8ecd0fa5cb9", size = 13323704 },
 ]
 
 [[package]]

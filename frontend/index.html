@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ONNX Paraphrase Italian MPNet Test</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css"
+        />
+    </head>
+    <body>
+        <main class="container">
+            <h1>ONNX Paraphrase Italian MPNet Test</h1>
+
+            <div class="input-section">
+                <label>Modello:</label>
+                <select id="modelSelect">
+                    <option value="local">
+                        Locale (paraphrase-italian-mpnet-med-v2)
+                    </option>
+                    <option value="xenova">
+                        Xenova (paraphrase-multilingual-MiniLM-L12-v2)
+                    </option>
+                </select>
+
+                <br /><br />
+
+                <label for="inputText">Enter Italian text:</label>
+                <textarea id="inputText">
+acarbosio;uso orale;acarbosio tecnigen;50 mg compresse</textarea
+                >
+
+                <div class="example">
+                    <p><strong>Esempi:</strong></p>
+                    <p>
+                        1. acarbosio;uso orale;acarbosio tecnigen;50 mg
+                        compresse 40 compresse in blister pvc/pctfe/pvc/al
+                    </p>
+                    <p>2. acarbosio in compresse</p>
+                    <p>3. acarbosio</p>
+                </div>
+
+                <button id="btnEmbed">
+                    Genera Embedding
+                </button>
+                 <button id="btnCompare">
+                     Confronta Esempi
+                 </button>
+                <br /><br />
+                <label for="topN">Top N risultati:</label>
+                <input type="number" id="topN" value="5" min="1" />
+                 <button id="btnQuery">Cerca DB</button>
+                <span class="loading" id="loading">Caricamento...</span>
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="results" id="results" style="display: none">
+                <h2>Risultati</h2>
+                <div id="vectorDisplay"></div>
+                <div id="similarityDisplay"></div>
+            </div>
+        </main>
+
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
